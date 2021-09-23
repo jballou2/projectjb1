@@ -58,11 +58,11 @@ def getSongInfo(token, random_Artists):
 token = getAccessToken(clientID, clientSecret)
 
 artistsID = [
-    ""              #drake
-    ""              #kendrick lamar
-    ""              #machine gun kelly
-    ""              #adele 
-    ""              #jcole
+    "3TVXtAsR1Inumwj472S9r4"              #drake
+    "2YZyLoL8N0Wb9xBt1NhZWg"              #kendrick lamar
+    "6TIYQ3jFPwQSRmorSezPxX"              #machine gun kelly
+    "4dpARuHxo51G3z768sgnrY"              #adele 
+    "6l3HvQ5sa6mXTsMTB19rO5"              #jcole
 ]
 
 random_Artists = random.choice(artistsID) #artist info is randomly chosen

@@ -1,0 +1,35 @@
+body {
+    height: 100vh;
+    display: grid;
+    place-items: center;
+
+    }
+.card{
+    width: 40px;
+    
+
+    }
+
+.card__content{
+    text-align: center;
+    position: relative;
+    padding: 5em;
+    background: yellow;
+}
+
+.card__front{
+    position: absolute;
+    top:0;
+    bottom:0;
+    left:0;
+    right:0;
+}
+
+.card__front {
+    background:red;
+}
+
+.card__title {
+    font-size:2rem;
+    
+}
