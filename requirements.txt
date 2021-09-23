@@ -6,5 +6,5 @@ os
 random
 dotenv
 find_dotenv
-requests 
+requests.api 
 Response
