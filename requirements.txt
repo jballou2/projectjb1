@@ -1,3 +1,4 @@
-FLASK
-response
-dot.env
+Flask
+Response
+Requests
+python-dotenv
