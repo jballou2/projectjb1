@@ -1,0 +1,6 @@
+Flask
+python-dotenv
+requests
+base64
+os
+random
