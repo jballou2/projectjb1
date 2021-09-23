@@ -1,4 +1,4 @@
 Flask
 Response
-Requests
+requests
 python-dotenv
