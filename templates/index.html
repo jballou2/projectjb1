@@ -1,26 +1,29 @@
 <!DOCTYPE html>
 <html>
     <head>
-        
+        <title>music player </title>     
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
+       
+        <link rel="stylesheet" type="text/css" href="style.css">
 
-    </head>
-    <body>
-
-            <div class ="card">
-            <div class ="card__content">
+   
+        </head>       
+        <body>
             
-            <div class ="card__front">
-                <h3 class ="card__title"> player</h3>           
-            
-        </div>
 
-        <p class = "card__body">song:</p>
-    
-    </div>
-    </div>
-    </div>
-        
-        
-        </body>
-  
+            <div class="main">
+                <p id="logo"><i class="fa fa-music" aria-hidden="true"></i></p>
+                
+                <img id="track_image">
+                <p id="volume_show">90</p>
+
+                <i claass="fa fa-volume-up" aria-hidden="true" id="volume_icon" onclick="
+                    mute_sound()"></i>
+                <input type="range" min="0" max="100" value="90" onchange = "volume_change()">
+            
+            
+            
+            
+            </div>
 </html>
