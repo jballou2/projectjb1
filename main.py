@@ -5,7 +5,7 @@ import json
 import os
 import random
 from dotenv import find_dotenv, load_dotenv
-from requests.api import Response
+#from requests.api import get
 
 load_dotenv(find_dotenv())
 
@@ -23,8 +23,9 @@ def getAccessToken(clientID, clientSecret):
     base64_message = base64_bytes.decode('ascii')
 
     #print(base64_message)
-    authData['grant_type'] = "client_credentials"
     authHeader['authorization'] = "Basic " + base64_message
+    authData['grant_type'] = "client_credentials"
+    
     res = requests.post(authUrl, headers=authHeader, data=authData)
     #print(res)
 
@@ -40,13 +41,14 @@ def getSongInfo(token, random_Artists):
     SongInfoEndpoint = f"https://api.spotify.com/v1/artists/{random_Artists}/top-tracks?market=US"
 
     getHeader = {
-        "Authorization": "Bearer " + token
+        "Authorization": f"Bearer {token}" 
 
     }
 
-
     res = requests.get(SongInfoEndpoint, headers= getHeader)
 
+    #print(res.text)
+    #print(res.status_code)
 
     SongInfoObject = res.json()
 
@@ -58,11 +60,11 @@ def getSongInfo(token, random_Artists):
 token = getAccessToken(clientID, clientSecret)
 
 artistsID = [
-    "3TVXtAsR1Inumwj472S9r4"              #drake
-    "2YZyLoL8N0Wb9xBt1NhZWg"              #kendrick lamar
-    "6TIYQ3jFPwQSRmorSezPxX"              #machine gun kelly
-    "4dpARuHxo51G3z768sgnrY"              #adele 
-    "6l3HvQ5sa6mXTsMTB19rO5"              #jcole
+   "3TVXtAsR1Inumwj472S9r4",              #drake
+   "2YZyLoL8N0Wb9xBt1NhZWg",             #kendrick lamar
+   "6TIYQ3jFPwQSRmorSezPxX",            #machine gun kelly
+    "4dpARuHxo51G3z768sgnrY",            #adele 
+    "6l3HvQ5sa6mXTsMTB19rO5",           #jcole
 ]
 
 random_Artists = random.choice(artistsID) #artist info is randomly chosen
@@ -70,12 +72,13 @@ random_Artists = random.choice(artistsID) #artist info is randomly chosen
 songInfo = getSongInfo(token, random_Artists)
 
 
-for i in range(1):
-    songName = (songInfo['tracks'][i]['name'])
-    artistName = (songInfo['tracks'][i]['artists'][0]['name'])
-    songImage  = (songInfo['tracks'][i]['album']['images'][0]['url'])
-    songPreview = (songInfo['tracks'][i]['preview_url'])
-
+#for i in range(1):
+songName = songInfo['tracks'][1]['name']
+    
+artistName = (songInfo['tracks'][1]['artists'][0]['name'])
+songImage  = (songInfo['tracks'][1]['album']['images'][0]['url'])
+songPreview = (songInfo['tracks'][1]['preview_url'])
+   
 
 #Genius Access token
 GeniusAccessToken = os.getenv("GeniusAccessToken")
@@ -83,35 +86,25 @@ GeniusAccessToken = os.getenv("GeniusAccessToken")
 def getGeniusinfo():
     search_term = songName
     genius_search_url = f"http://api.genius.com/search?q={search_term}&access_token={GeniusAccessToken}"
+    
+    
     res = requests.get(genius_search_url)
-    geniusInfoObject = res.json
+    geniusInfoObject = res.json()
 
     return geniusInfoObject
 
 geniusInfo = getGeniusinfo()
 
 
-for i in range(1):
-    songLyric = (geniusInfo['response']['hits'][i]['result']['url]'])
 
-    app = flask.Flask(__name__)
-    app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
+songLyric = geniusInfo['response']['hits'][0]['result']['url']
+print(songLyric)
 
-    @app.route('/')
-    def index():
-        print("this is a debug statement")
-        return flask.render_template(
-            "index.html",
-            songName = songName,
-            artistName = artistName,
-            songImage = songImage,
-            songPreview = songPreview,
-            songLyric = songLyric
-        )
-
-    app.run(
-        host=os.getenv('IP', '0.0.0.0')
-    )
-    port=int(os.getenv('PORT', 8080)),
-        
+#app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
+app = flask.Flask(__name__)
+@app.route("/")
+def index():
     
+    return flask.render_template("index.html", songName = songName, artistName = artistName, songImage = songImage, songPreview = songPreview, songLyric = songLyric)
+
+app.run(use_reloader = True, debug=True, host='0.0.0.0',port=int(os.getenv('PORT', 8080)),)
