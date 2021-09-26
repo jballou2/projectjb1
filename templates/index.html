@@ -1,62 +1,21 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>music player </title>     
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
-       
-        <link rel="stylesheet" type="text/css" href="style.css">
-
-   
-        </head>       
-        <body>
-            
-
-            <div class="main">
-                <p id="logo"><i class="fa fa-music" aria-hidden="true"></i>music</p>
-                
-                <div class="left">
-                
-
-                <img id="track_image">
-                <div class="volume">
-
-                <p id="volume_show">90</p>
-                <i class="fa fa-volume-up" aria-hidden="true" id="volume_icon" onclick="
-                    mute_sound()"></i>
-                <input type="range" min="0" max="100" value="90" onchange = "volume_change()">
-            </div>     
-        </div>
-
-
-            <div class="right">
-                    <div class="show_song_no">
-                    <p id="present">1</p>
-                    <p>/</p>
-                    <p id="total">5</p>
-            </div>
-
-            <!--song title-->
-                <p id="title">title.mp3</p>
-                <p id="artist">Artist name</p>
-
-                <div class="middle">
-                    <button onclick="previous_song()" id="pre"><i class="fa fa-step-backward"
-                        aria-hidden="true"></i></button>
-                    <button onclick="justplay()" id="play"><i class="fa fa-step-play"
-                            aria-hidden="true"></i></button>
-                    <button onclick="next_song()" id="next"><i class="fa fa-step-foward"
-                            aria-hidden="true"></i></button>
-                        
-                        </div>
-
-
-                        <!---song duration-->
-                        <div class="duration">
-                            <input type="range" min="0" max="100" value="0" id="duration_slider" onchange="change_duration()">
+  <head>
     
-                    </div>
-                    <button id="auto" onlcick="autoplay_switch()"> Auto play <i class="fa fa-step-circle-o-notch"
-                        aria-hidden="true"></i></button>
-            </div>
+    <title>audio player</title>
+  </head>
+  
+    <figure>
+        <figcaption>Listen to the T-Rex:</figcaption>
+        <audio
+            controls
+            src="/media/cc0-audio/t-rex-roar.mp3">
+                Your browser does not support the
+                <code>audio</code> element.
+        </audio>
+    </figure>
+    <body></body>
+    
+
+</body>
 </html>
