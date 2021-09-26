@@ -1,3 +1,67 @@
-figure {
-    margin: 0;
+* {
+    margin: 0px;
+    background: linear-gradient(to right, #bdc3c7, #2c3e50)
+
+}
+body{
+    height: 25vh;
+    display: grid;
+    place-items: center;
+
+}
+
+.card{
+    width: 50vh;
+
+}
+
+.card_content{
+    text-align: center;
+    background: black;
+    position: absolute;
+
+
+}
+
+.card_front {
+    color: white;
+    position: relative;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 2rem;
+    display: grid;
+      place-content: center; 
+    background: none;
+
+}
+
+.card_title {
+    font-size: 3rem;
+    padding: 10px;
+    background: none;
+
+}
+
+.card_subtitle {
+    font-size: 2rem;
+    margin-bottom: 25px;
+    background: none;
+}
+
+.lyric{
+    background: none;
+    padding: 25px;
+    font: bold;
+    font-size: 1rem;
+}
+audio { 
+    place-items: center;
+    size: 50px;
+}
+
+img{
+    display: flex;
+    align-items: center;
 }
